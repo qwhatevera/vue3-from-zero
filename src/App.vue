@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { useCounterStore } from '@/stores/counter'
+
+const counter = useCounterStore()
 </script>
 
 <template>
@@ -14,13 +17,29 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
+
+      <div class="pinia">
+        <p>count: {{ counter.count }}</p>
+        <p>doubleCount: {{ counter.doubleCount }}</p>
+        <el-button @click="counter.increment">+</el-button>
+      </div>
+
+      <div class="element-plus">
+        <el-button>Default</el-button>
+      </div>
+
+      <div class="tailwindcss font-bold">bold</div>
+
+      <div class="scss">
+        <span>red</span>
+      </div>
     </div>
   </header>
 
   <RouterView />
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -54,6 +73,12 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+
+.scss {
+  span {
+    color: red;
+  }
 }
 
 @media (min-width: 1024px) {
